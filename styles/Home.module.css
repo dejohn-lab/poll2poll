@@ -2,6 +2,7 @@
   min-height: 100vh;
   padding: 0 0.5rem;
   display: flex;
+  background-color: blue;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -11,6 +12,7 @@
   padding: 5rem 0;
   flex: 1;
   display: flex;
+  color: white;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -120,4 +122,11 @@
     width: 100%;
     flex-direction: column;
   }
+
+}
+.fontW{
+  height: 1em;
+  width: 1em;
+  display:inline-block;
+  margin-inline: 5em;
 }
