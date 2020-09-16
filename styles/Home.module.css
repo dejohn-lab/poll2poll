@@ -2,17 +2,26 @@
   min-height: 100vh;
   padding: 0 0.5rem;
   display: flex;
-  background-color: blue;
+  background-color:white;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+.pollbox {
+  background-color:blue;
+  padding: 5em;
+  border-radius: 2em 2em 2em 2em;
+}
+.p2p{
+  margin: -0px ;
+  color: blueviolet;
 }
 
 .main {
   padding: 5rem 0;
   flex: 1;
   display: flex;
-  color: white;
+  color:white;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -38,7 +47,7 @@
 }
 
 .title a {
-  color: #0070f3;
+  color: blueviolet;
   text-decoration: none;
 }
 
@@ -52,6 +61,7 @@
   margin: 0;
   line-height: 1.15;
   font-size: 4rem;
+  color:white;
 }
 
 .title,
