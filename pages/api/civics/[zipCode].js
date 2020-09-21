@@ -1,3 +1,5 @@
+import zipcodes from './zipcodes.json'
+
 /**
  * HOW TO USE:
  * Replace GOOGLE_API_KEY with an API key from here:
@@ -233,6 +235,14 @@ const GOOGLE_API_KEY = 'AIzaSyDH35ZhUADAFaV1mpIeLh4GaxQ5RxchKuo';
 const ELECTION_ID = 7000;
 
 // Returns the following shape:
+// 
+//    zipCode: string
+//    locations: {
+//       distance: number
+//       location: []pollingLocations   
+//     }
+
+// pollingLocation format
 // [
 //   {
 //     "id": string,
@@ -262,30 +272,70 @@ const ELECTION_ID = 7000;
 //   }
 // ]
 
-const fetchTestData = () => {
-  return [
-   {
-     "id": "blah",
-     "address": {
-       "locationName": "DMV",
-       "line1": "625 Atlantic Ave",
-       "line2": "2nd Floor",
-       "line3": "",
-       "city": "Brooklyn",
-       "state": "NY",
-       "zip": "11221",
-     },
-     "notes": "",
-     "pollingHours": "9am-5pm",
-     "name": "Test test",
-     "voterServices": "Español",
-     "startDate": "11-01-2020",
-     "endDate": "11-10-2020",
-     "latitude": -1,
-     "longitude": -2,
-     "sources": [],
-   }
- ]
+const haversineDistance = ([lat1, lon1], [lat2, lon2], isMiles = false) => {
+  const toRadian = angle => (Math.PI / 180) * angle;
+  const distance = (a, b) => (Math.PI / 180) * (a - b);
+  const RADIUS_OF_EARTH_IN_KM = 6371;
+
+  const dLat = distance(lat2, lat1);
+  const dLon = distance(lon2, lon1);
+
+  lat1 = toRadian(lat1);
+  lat2 = toRadian(lat2);
+
+  // Haversine Formula
+  const a =
+    Math.pow(Math.sin(dLat / 2), 2) +
+    Math.pow(Math.sin(dLon / 2), 2) * Math.cos(lat1) * Math.cos(lat2);
+  const c = 2 * Math.asin(Math.sqrt(a));
+
+  let finalDistance = RADIUS_OF_EARTH_IN_KM * c;
+
+  if (isMiles) {
+    finalDistance /= 1.60934;
+  }
+
+  return finalDistance;
+};
+
+const zipCodeLatLong = (zip) => {
+  if (zipcodes[zip]) {
+    return zipcodes[zip].geopoint.split(',').map(parseFloat)
+  } else {
+    return [0, 0]
+  }
+}
+
+const fetchTestData = (zipCode) => {
+  return {
+    zipCode,
+    locations: [
+      {
+        distance: haversineDistance(zipCodeLatLong(zipCode), [40.664576, -73.718766], true),
+        location: {
+          "id": "blah",
+          "address": {
+            "locationName": "DMV",
+            "line1": "625 Atlantic Ave",
+            "line2": "2nd Floor",
+            "line3": "",
+            "city": "Brooklyn",
+            "state": "NY",
+            "zip": "11221",
+          },
+          "notes": "",
+          "pollingHours": "9am-5pm",
+          "name": "Test test",
+          "voterServices": "Español",
+          "startDate": "11-01-2020",
+          "endDate": "11-10-2020",
+          "latitude": -1,
+          "longitude": -2,
+          "sources": [],
+        }
+      },
+    ]
+  }
 }
 
 const fetchProductionData = async (zipCode) => {
@@ -296,7 +346,18 @@ const fetchProductionData = async (zipCode) => {
   const apiRes = await fetch(url);
 
   const apiResponseData = await apiRes.json();
-  return apiResponseData.pollingLocations || [];
+
+  return {
+    zipCode,
+    locations: (apiResponseData.pollingLocations || []).map((loc) => {
+      return {
+        location: loc,
+        distance: haversineDistance(
+          zipCodeLatLong(zipCode), [loc.latitude, loc.longitude], true
+        ),
+      }
+    })
+  }
 }
 
 export default async (req, res) => {
@@ -309,5 +370,5 @@ export default async (req, res) => {
 
   res.statusCode = 200
 
-  res.json({pollingLocations: data})
+  res.json(data)
 }
