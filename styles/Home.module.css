@@ -7,14 +7,32 @@
   justify-content: center;
   align-items: center;
 }
+.powderblue{
+  background: rgba(196, 196, 196, 0.4);
+border-radius: 14px;
+ width: 500px;
+ height: 500px;
+ margin-bottom:40px;
+ position: absolute;
+}
+.deepblue{
+  color: #0C009B;
+  margin-top: -10px;
+  padding-left: 120px;
+  align-content: center;
+}
 .pollbox {
   background-color:blue;
-  padding: 5em;
+  padding: 2em;
   border-radius: 2em 2em 2em 2em;
+  height: 200px;
+  width:  400px;
+  z-index:1;
 }
+
 .p2p{
-  margin: -0px ;
-  color: blueviolet;
+  margin:  0px  700px 300px 0px;
+  color:#0C009B;
 }
 
 .main {

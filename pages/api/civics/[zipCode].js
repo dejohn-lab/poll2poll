@@ -229,7 +229,7 @@
 }
  */
 
-const GOOGLE_API_KEY = '';
+const GOOGLE_API_KEY = 'AIzaSyDH35ZhUADAFaV1mpIeLh4GaxQ5RxchKuo';
 const ELECTION_ID = 7000;
 
 // Returns the following shape:
