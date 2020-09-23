@@ -12,8 +12,8 @@ export default function Home() {
         <title>Poll2Poll</title>
       </Head>
       <div className={styles.p2p}>
-        <h3>Poll2Poll <br/>: City</h3>
-        
+        <h3 className={styles.p2p1}>Poll2Poll <br/>: City</h3>
+        <h3 className={styles.p2p2} >doing it</h3>
       </div>
       <main className={styles.main}>
         <div className={styles.powderblue}>

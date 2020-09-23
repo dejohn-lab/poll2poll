@@ -29,8 +29,17 @@ font-weight: bold;
 }
 
 .p2p{
-  
+  flex:1;
+  justify-content: space-between;
+  width: 100%;
   color:#0C009B;
+
+}
+.p2p1{
+  display:inline-block;
+}
+.p2p2{
+  float: right;
 }
 
 .main {
