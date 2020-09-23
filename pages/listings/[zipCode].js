@@ -1,30 +1,38 @@
 import { useRouter } from 'next/router'
-import { useState, useEffect } from 'react';
+import useSWR from 'swr'
 
-const zipCodeSearch = async (zipcode) => {
-    const res = await fetch(`/api/civics/${zipcode}`)
-    return res.json();
-}
+const fetcher = (...args) => fetch(...args).then(res => res.json())
 
 const roundNumber = (number) => {
     return Math.round(number * 100) / 100;
 }
 
+function useLocationSearch (zipCode) {
+    if (!zipCode) {
+        return {
+            searchResult: [],
+            isLoading: true,
+            isError: false,
+        }
+    }
+
+
+    const { data, error } = useSWR(`/api/civics/${zipCode}`, fetcher)
+    return {
+      searchResult: data,
+      isLoading: !error && !data,
+      isError: error
+    }
+  }
+
 export default function Listings() {
     const router = useRouter();
     const { zipCode } = router.query;
-    const [searchResult, setSearchResult] = useState({});
 
-    useEffect(() => {
-        async function loadData() {
-            const data = await zipCodeSearch(zipCode);
-            setSearchResult(data);
-        }
+    const {searchResult, isLoading, isError } = useLocationSearch(zipCode)
 
-        if (zipCode && zipCode.length) {
-            loadData();
-        }
-    }, [zipCode])
+    if (isError) return <div>failed to load</div>
+    if (isLoading) return <div>loading...</div>
 
     return (
         <div>
