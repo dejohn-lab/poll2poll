@@ -1,42 +1,40 @@
 .container {
   min-height: 100vh;
-  padding: 0 0.5rem;
+  padding: 0 ;
   display: flex;
   background-color:white;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  width:100%;
 }
 .powderblue{
   background: rgba(196, 196, 196, 0.4);
 border-radius: 14px;
- width: 500px;
- height: 500px;
- margin-bottom:40px;
- position: absolute;
+padding: 50px;
+width:90%;
+font-size: 30px;
+font-weight: bold;
+ 
 }
 .deepblue{
   color: #0C009B;
-  margin-top: -10px;
-  padding-left: 120px;
-  align-content: center;
+  text-align: center;
 }
 .pollbox {
   background-color:blue;
   padding: 2em;
   border-radius: 2em 2em 2em 2em;
-  height: 200px;
-  width:  400px;
   z-index:1;
 }
 
 .p2p{
-  margin:  0px  700px 300px 0px;
+  
   color:#0C009B;
 }
 
 .main {
-  padding: 5rem 0;
+  padding: 5rem 0em;
   flex: 1;
   display: flex;
   color:white;
