@@ -14,6 +14,7 @@ export default function Home(props) {
   const router = useRouter()
 
   useEffect(() => {
+    console.log("heres the zipcode", zipCode)
     if (submit && zipCode.length === 5) {
       router.push(`/listings/${zipCode}`)
     }
