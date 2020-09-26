@@ -4,7 +4,7 @@ import Link from 'next/link'
 
 import styles from '../styles/Home.module.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faSearchPlus } from '@fortawesome/free-solid-svg-icons'
+import { faHome } from '@fortawesome/free-solid-svg-icons'
 export default function Home() {
   return (
     <div className={styles.container}>
@@ -13,7 +13,12 @@ export default function Home() {
       </Head>
       <div className={styles.p2p}>
         <h3 className={styles.p2p1}>Poll2Poll <br/>: City</h3>
-        <h3 className={styles.p2p2} >doing it</h3>
+        <div className={[styles.fontW, styles.p2p2].join(" ")}>
+              <Link href="/">
+                <a><FontAwesomeIcon icon={faHome} /></a>
+              </Link>
+
+            </div>
       </div>
       <main className={styles.main}>
         <div className={styles.powderblue}>

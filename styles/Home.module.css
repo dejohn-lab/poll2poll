@@ -1,18 +1,18 @@
 .container {
   min-height: 100vh;
-  padding: 0 ;
+  padding: 50px;
   display: flex;
   background-color:white;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width:100%;
+  width:600px;
+  margin: auto;
 }
 .powderblue{
   background: rgba(196, 196, 196, 0.4);
 border-radius: 14px;
 padding: 50px;
-width:90%;
 font-size: 30px;
 font-weight: bold;
  
@@ -37,6 +37,7 @@ font-weight: bold;
 }
 .p2p1{
   display:inline-block;
+  margin:0em
 }
 .p2p2{
   float: right;
