@@ -17,14 +17,49 @@ font-size: 30px;
 font-weight: bold;
  
 }
+.powdergray{
+  background: white;
+border-radius: 14px;
+padding: 50px;
+font-size: 30px;
+font-weight: bold;
+width: 100%
+}
+.powderwhite{
+  background: white;
+border-radius: 14px;
+padding: 50px;
+font-size: 30px;
+font-weight: bold;
+ 
+}
+
+
+
+
+ 
+ 
+
 .deepblue{
   color: #0C009B;
   text-align: center;
 }
+.pollboxopen {
+  background-color:rgba(0, 0, 0, 0.85);
+  padding: 2em;
+  border-radius: 1em 1em 1em 1em;
+  z-index:1;
+}
+.pollboxthird {
+  background-color: gray;
+  padding: 2em;
+  border-radius: 1em 1em 1em 1em;
+  z-index:1;
+}
 .pollbox {
   background-color:blue;
   padding: 2em;
-  border-radius: 2em 2em 2em 2em;
+  border-radius: 1em 1em 1em 1em;
   z-index:1;
 }
 
@@ -42,7 +77,11 @@ font-weight: bold;
 .p2p2{
   float: right;
 }
-
+.frame{
+border: 2px solid #0C009B;
+box-sizing: border-box;
+border-radius: 14px;;
+}
 .main {
   padding: 5rem 0em;
   flex: 1;

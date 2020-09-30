@@ -346,7 +346,7 @@ const fetchProductionData = async (zipCode) => {
   const apiRes = await fetch(url);
 
   const apiResponseData = await apiRes.json();
-
+ console.log(apiResponseData)
   return {
     zipCode,
     locations: (apiResponseData.pollingLocations || []).map((loc) => {
@@ -365,7 +365,7 @@ export default async (req, res) => {
     query: { zipCode },
   } = req
 
-  // const data = await fetchProductionData(zipCode);
+  //const data = await fetchProductionData(zipCode);
   const data = await fetchTestData(zipCode);
 
   res.statusCode = 200

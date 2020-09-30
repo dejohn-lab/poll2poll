@@ -17,7 +17,7 @@ export default function Listings() {
     const { zipCode } = router.query;
 
     const { searchResult, isLoading, isError } = useLocationSearch(zipCode)
-
+    
     if (isError) return <div>failed to load</div>
     if (isLoading) return <div>loading...</div>
 
@@ -36,6 +36,33 @@ export default function Listings() {
             </p>
 
                     <div className={styles.pollbox}>
+                        <p>
+                            {locations[0].location.name}
+            </p>
+                    </div>
+                </div>
+
+            </main>
+
+            <main className={[styles.main, styles.frame].join(" ")}>
+                <div className={styles.powderwhite}>
+                    <p className={styles.deepblue}>Next available polling stations: 
+            </p>
+
+                    <div className={styles.pollboxopen}>
+                        <p>
+                            {locations[0].location.name}
+            </p>
+                    </div>
+                </div>
+
+        
+            
+                <div className={styles.powdergray}>
+                    <p className={styles.deepblue}><p></p>
+            </p>
+
+                    <div className={styles.pollboxthird}>
                         <p>
                             {locations[0].location.name}
             </p>
