@@ -3,7 +3,6 @@ import useLocationSearch from '../../hooks/useLocationSearch'
 import styles from '../../styles/Home.module.css'
 import Head from 'next/head'
 import TopBar from '../components/TopBar'
-import Link from 'next/link'
 const roundNumber = (number) => {
     return Math.round(number * 100) / 100;
 }
@@ -32,15 +31,13 @@ export default function Listings() {
            <TopBar/>
             <main className={styles.main}>
                 <div className={styles.powderblue}>
-                    <p className={styles.deepblue}>your closest Polling
-                    Station for {zipCode}
+                    <p className={styles.deepblue}>
             </p>
 
                     <div className={styles.pollbox}>
-                        <Link href="/details"><a>
                         <p>
                             {locations[0].location.name}
-            </p></a></Link>
+            </p>
                     </div>
                 </div>
 
@@ -72,7 +69,6 @@ export default function Listings() {
                 </div>
 
             </main>
-            <main class="styles.ride"></main>
 
         </div>
     )

@@ -17,6 +17,7 @@ font-size: 30px;
 font-weight: bold;
  
 }
+
 .powdergray{
   background: white;
 border-radius: 14px;
@@ -33,7 +34,20 @@ font-size: 30px;
 font-weight: bold;
  
 }
-
+.powdergreen{
+  background: white;
+border-radius: 14px;
+padding: 50px;
+font-size: 30px;
+font-weight: bold;
+ 
+}
+.changCol{
+  color:red;
+}
+.changCol2{
+  color:green;
+}
 
 
 
@@ -42,6 +56,10 @@ font-weight: bold;
 
 .deepblue{
   color: #0C009B;
+  text-align: center;
+}
+.deepgreen{
+  color:#009b05;
   text-align: center;
 }
 .pollboxopen {
@@ -62,6 +80,12 @@ font-weight: bold;
   border-radius: 1em 1em 1em 1em;
   z-index:1;
 }
+.pollboxBI {
+  background-color:white;
+  padding: 2em;
+  border-radius: 1em 1em 1em 1em;
+  z-index:1;
+}
 
 .p2p{
   flex:1;
@@ -78,7 +102,6 @@ font-weight: bold;
   float: right;
 }
 .frame{
-border: 2px solid #0C009B;
 box-sizing: border-box;
 border-radius: 14px;;
 }
