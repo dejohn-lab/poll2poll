@@ -1,24 +1,32 @@
-import Head from 'next/head'
-import Link from 'next/link'
-import { useRouter } from 'next/router'
-import styles from '../styles/Home.module.css'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faSearchPlus } from '@fortawesome/free-solid-svg-icons'
-import { useState, useEffect } from 'react'
-import TopBar from './components/TopBar'
+import React, { useState, useEffect } from 'react';
 
+import Head from 'next/head';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
 
-export default function Home(props) {
-  const [zipCode, setZipCode] = useState('')
-  const [submit, setSubmit] = useState(false)
-  const router = useRouter()
+import useSWR from 'swr';
+import styles from '../styles/Home.module.css';
+import TopBar from './components/TopBar';
+
+const fetcher = (...args) => fetch(...args).then((res) => res.json());
+
+export default function Home() {
+  const [street, setStreet] = useState('');
+  const [city, setCity] = useState('');
+  const [state, setState] = useState('');
+  const [zipCode, setZipCode] = useState('');
+
+  const [submit, setSubmit] = useState(false);
+  const router = useRouter();
+
+  const { data: states, loading: statesLoading } = useSWR('/api/geo/states', fetcher);
+  const address = encodeURIComponent(`${street}, ${city}, ${state} ${zipCode}`);
 
   useEffect(() => {
-    console.log("heres the zipcode", zipCode)
-    if (submit && zipCode.length === 5) {
-      router.push(`/listings/${zipCode}`)
+    if (submit) {
+      router.push(`/listings/${address}`);
     }
-  }, [submit, zipCode])
+  }, [address, city, router, state, street, submit, zipCode]);
 
   return (
     <div className={styles.container}>
@@ -26,35 +34,94 @@ export default function Home(props) {
         <title>Poll2Poll</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <TopBar/>
+      <TopBar />
       <main className={styles.main}>
         <div className={styles.pollbox}>
           <h1 className={styles.title}>
             Check Poll
-        </h1>
+          </h1>
           <h1 className={styles.title}>
             Status
-        </h1>
-
+          </h1>
 
           <div className={styles.description}>
-            <label htmlFor="zipCode">Enter Zip:</label>
+            <h3>Enter Address Where You Are Registered To Vote</h3>
 
-            <form onSubmit={(e) => { setSubmit(true); e.preventDefault() }}>
-              <input type="number" id="zipCode" name="zipCode" required
-                minLength="5" maxLength="5" size="10" onChange={(e) => setZipCode(e.target.value)}></input>
+            <form onSubmit={(e) => { setSubmit(true); e.preventDefault(); }}>
+              <p className={styles.fieldSection}>
+                <input
+                  type="text"
+                  id="street"
+                  name="street"
+                  required
+                  className={styles.field}
+                  onChange={(e) => setStreet(e.target.value)}
+                />
+                <label htmlFor="street" className={styles.label}>street</label>
+              </p>
+
+              <p className={styles.fieldSection}>
+                <input
+                  type="text"
+                  id="city"
+                  name="city"
+                  required
+                  className={styles.field}
+                  onChange={(e) => setCity(e.target.value)}
+                />
+                <label htmlFor="city" className={styles.label}>city</label>
+              </p>
+              <p className={styles.fieldSection}>
+                <input
+                  type="text"
+                  name="states"
+                  list="states"
+                  className={styles.field}
+                  onChange={(e) => setState(e.target.value)}
+                  disabled={statesLoading}
+                />
+                {states?.length && (
+                <datalist id="states">
+                  {states.map((item, key) => <option key={key} value={item} />)}
+                </datalist>
+                )}
+                <label htmlFor="states" className={styles.label}>state</label>
+              </p>
+
+              <p className={styles.fieldSection}>
+                <input
+                  type="text"
+                  name="zipCode"
+                  className={styles.field}
+                  onChange={(e) => setZipCode(e.target.value)}
+                />
+                <label htmlFor="zipCode" className={styles.label}>zip code</label>
+              </p>
+
             </form>
 
-            <div className={styles.fontW}>
-              <Link href={`/listings/${zipCode}`}>
-                <a><FontAwesomeIcon icon={faSearchPlus} /></a>
+            <div className={styles.floatRight}>
+              <Link href={`/listings/${address}`}>
+                <button
+                  type="submit"
+                  className={styles.submit}
+                  disabled={
+                  zipCode.length === 0
+                   || state.length === 0
+                   || city.length === 0
+                   || street.length === 0
+}
+                >
+                  Submit
+
+                </button>
               </Link>
             </div>
           </div>
-        </div >
+        </div>
 
-      </main >
+      </main>
 
-    </div >
-  )
+    </div>
+  );
 }
