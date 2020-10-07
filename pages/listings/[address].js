@@ -5,18 +5,21 @@ import Head from 'next/head';
 import useLocationSearch from '../../hooks/useLocationSearch';
 import styles from '../../styles/Home.module.css';
 import TopBar from '../components/TopBar';
+import Link from 'next/link'
+
 
 const roundNumber = (number) => Math.round(number * 10) / 10;
 
 const Location = ({ location, distance }) => (
-  <>
+  <Link href="/details"><a>
     <p>{location.name || location.address?.locationName}</p>
     <p>
       {roundNumber(distance)}
       {' '}
       miles away
     </p>
-  </>
+  </a>
+  </Link>
 
 );
 
@@ -52,8 +55,8 @@ export default function Listings() {
                 <Location distance={locations[0].distance} location={locations[0].location} />
 
               ) : (
-                'No locations found'
-              )}
+                  'No locations found'
+                )}
             </p>
           </div>
         </div>
@@ -62,33 +65,35 @@ export default function Listings() {
 
       {
         locations.length === 3 ? (
-
-          <main className={[styles.main, styles.frame].join(' ')}>
-            <div className={styles.powderwhite}>
-              <p className={styles.deepblue}>
-                Next available polling stations:
+          <>
+            <main className={[styles.main, styles.frame].join(' ')}>
+              <div className={styles.powderwhite}>
+                <p className={styles.deepblue}>
+                  Next available polling stations:
               </p>
 
-              <div className={styles.pollboxopen}>
-                <p>
-                  {locations[1].location.name}
-                </p>
+                <div className={styles.pollboxopen}>
+                  <p>
+                    {locations[1].location.name}
+                  </p>
+                </div>
               </div>
-            </div>
 
-            <div className={styles.powdergray}>
-              <p className={styles.deepblue}>
-                <p />
-              </p>
-
-              <div className={styles.pollboxthird}>
-                <p>
-                  {locations[2].location.name}
+              <div className={styles.powdergray}>
+                <p className={styles.deepblue}>
+                  <p />
                 </p>
-              </div>
-            </div>
 
-          </main>
+                <div className={styles.pollboxthird}>
+                  <p>
+                    {locations[2].location.name}
+                  </p>
+                </div>
+              </div>
+            </main>
+
+            <main class="styles.ride"></main>
+          </>
         ) : null
       }
 
