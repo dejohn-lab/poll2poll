@@ -42,6 +42,9 @@ font-size: 30px;
 font-weight: bold;
  
 }
+.search{
+  text-align: center;
+}
 .changCol{
   color:red;
 }
@@ -58,6 +61,17 @@ font-weight: bold;
   color: #0C009B;
   text-align: center;
 }
+.deepblueBorder{
+  text-align: center;
+  border: 2px solid;
+  border-radius: 16px;
+  padding: 15px;
+border-image-source: linear-gradient(0deg, #FFFFFF, #FFFFFF),
+linear-gradient(180deg, #FFFFFF 0%, rgba(255, 255, 255, 0) 100%);
+
+
+}
+
 .deepgreen{
   color:#009b05;
   text-align: center;

@@ -5,7 +5,8 @@ import Head from 'next/head';
 import useLocationSearch from '../../hooks/useLocationSearch';
 import styles from '../../styles/Home.module.css';
 import TopBar from '../components/TopBar';
-import Link from 'next/link'
+import Link from 'next/link';
+import Loading from '../components/Loading';
 
 
 const roundNumber = (number) => Math.round(number * 10) / 10;
@@ -28,9 +29,9 @@ export default function Listings() {
   const { address } = router.query;
 
   const { searchResult, isLoading, isError } = useLocationSearch(address);
-
+  if (!address) return null;
   if (isError) return <div>failed to load</div>;
-  if (isLoading) return <div>loading...</div>;
+  if (isLoading) return <Loading address={address}/>;
 
   const locations = (searchResult.locations || []);
 
