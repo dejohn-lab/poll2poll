@@ -15,7 +15,7 @@ border-radius: 14px;
 padding: 50px;
 font-size: 30px;
 font-weight: bold;
- 
+
 }
 
 .powdergray{
@@ -32,7 +32,7 @@ border-radius: 14px;
 padding: 50px;
 font-size: 30px;
 font-weight: bold;
- 
+
 }
 .powdergreen{
   background: white;
@@ -51,8 +51,8 @@ font-weight: bold;
 
 
 
- 
- 
+
+
 
 .deepblue{
   color: #0C009B;
@@ -75,7 +75,7 @@ font-weight: bold;
   z-index:1;
 }
 .pollbox {
-  background-color:blue;
+  background-color: #0C009B;
   padding: 2em;
   border-radius: 1em 1em 1em 1em;
   z-index:1;
@@ -154,7 +154,20 @@ border-radius: 14px;;
 
 .title,
 .description {
-  text-align: center;
+  font-family: Source Sans Pro;
+font-style: normal;
+font-weight: bold;
+font-size: 48px;
+line-height: 60px;
+text-align: center;
+letter-spacing: -0.02em;
+
+
+}
+
+.description h3 {
+    font-family:'Open Sans';
+    font-weight: bold;
 }
 
 .description {
@@ -227,4 +240,46 @@ border-radius: 14px;;
   width: 1em;
   display:inline-block;
   margin-inline: 5em;
+}
+
+.floatRight {
+  float:right;
+}
+
+.submit {
+  background: #BC0E0E;
+  color: white;
+  text-transform: uppercase;
+  border: none;
+  border-radius: 4px;
+  padding: 8px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.submit:disabled {
+  background: gray;
+  cursor: default;
+}
+.field {
+  width: 100%;
+  border-radius: 4px;
+  padding: 8px;
+}
+
+.label {
+font-family: 'Open Sans';
+font-style: italic;
+font-weight: bold;
+font-size: 18px;
+line-height: 19px;
+letter-spacing: -0.02em;
+display:block;
+text-align:left;
+margin-top: 5px;
+}
+
+.fontW {
+  font-size: 48px;
 }
